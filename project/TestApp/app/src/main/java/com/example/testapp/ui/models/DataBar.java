@@ -29,12 +29,14 @@ public class DataBar extends FrameLayout {
     public int type;
     private Customer customer;
     private CustomerClassification classification;
+    private int clasId;
 
-    public DataBar(Context context, String name, Date date, int type) {
+    public DataBar(Context context, String name, Date date, int type, int clas_id) {
         super(context);
         this.name = name;
         this.date = date;
         this.type = type;
+        this.clasId = clas_id;
         this.ctx = context;
 
         this.layoutParams = new LinearLayout.LayoutParams(
@@ -55,7 +57,7 @@ public class DataBar extends FrameLayout {
     }
 
     public DataBar(Context context, String name, Date date, int type, Customer customer, CustomerClassification classification) {
-        this(context, name, date, type);
+        this(context, name, date, type, classification.getClassificationId());
         this.customer = customer;
         this.classification = classification;
         this.layout.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +96,7 @@ public class DataBar extends FrameLayout {
         nameTextView.setText("Name: "+this.customer.getName());
 
         TextView classificationTextView = (TextView) customView.findViewById(R.id.classificationId);
-        classificationTextView.setText("ClassificationId: "+Integer.valueOf(this.customer.getClassificationId()).toString());
+        classificationTextView.setText("ClassificationId: "+Integer.valueOf(this.classification.getClassificationId()).toString());
 
         TextView customerIdTextView = (TextView) customView.findViewById(R.id.customerId);
         customerIdTextView.setText("CustomerId: "+Integer.valueOf(this.customer.getCustomerId()).toString());

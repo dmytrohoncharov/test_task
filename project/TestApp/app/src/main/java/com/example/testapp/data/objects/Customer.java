@@ -11,6 +11,10 @@ public class Customer {
     private int customerId;
     private int classificationId;
 
+    public Customer(String name){
+        this.name = name;
+    }
+
     public Customer(String name, Date date, int classificationId){
         this.name = name;
         this.date = date;
